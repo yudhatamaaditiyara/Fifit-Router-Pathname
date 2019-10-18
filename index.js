@@ -71,7 +71,7 @@ class Pathname
 		if (this._stack[pathname]) {
 			return this._stack[pathname](request, response, done);
 		}
-		return next(request, response, done);
+		return done();
 	}
 }
 
