@@ -24,7 +24,7 @@ class Pathname
 	 */
 	constructor(routes){
 		this._stack = {};
-		if (routes) {
+		if (routes != null) {
 			this.routes(routes);
 		}
 	}
