@@ -61,15 +61,14 @@ class Pathname
 	}
 
 	/**
-	 * @param {Request} request
-	 * @param {Response} response
+	 * @param {Context} context
 	 * @param {function} done
 	 * @returns {any}
 	 */
-	handle(request, response, done){
-		let pathname = request.pathname;
+	handle(context, done){
+		let pathname = context.request.pathname;
 		if (this._stack[pathname]) {
-			return this._stack[pathname](request, response, done);
+			return this._stack[pathname](context, done);
 		}
 		return done();
 	}
