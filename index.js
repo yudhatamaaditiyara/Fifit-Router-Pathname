@@ -47,7 +47,7 @@ class Pathname
    * @returns {Pathname}
    */
   route(pathname, callback){
-    if (typeof callback != 'function') {
+    if (typeof callback !== 'function') {
       throw new IllegalArgumentError('The callback must be type of function');
     }
     this._routes[pathname] = callback;
