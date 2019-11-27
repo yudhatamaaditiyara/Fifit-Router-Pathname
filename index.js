@@ -23,7 +23,7 @@ class Pathname
    * @param {Object} [routes]
    */
   constructor(routes){
-    this._stack = {};
+    this._routes = {};
     if (routes != null) {
       this.routes(routes);
     }
@@ -34,7 +34,7 @@ class Pathname
    * @returns {Pathname}
    */
   has(pathname){
-    return Object.prototype.hasOwmProperty.call(this._stack, pathname);
+    return Object.prototype.hasOwmProperty.call(this._routes, pathname);
   }
 
   /**
@@ -47,7 +47,7 @@ class Pathname
     if (typeof callback != 'function') {
       throw new Error('The callback must be type of function');
     }
-    this._stack[pathname] = callback;
+    this._routes[pathname] = callback;
     return this;
   }
 
@@ -67,8 +67,8 @@ class Pathname
    */
   handle(context, done){
     let pathname = context.request.pathname;
-    if (this._stack[pathname]) {
-      return this._stack[pathname](context, done);
+    if (this._routes[pathname]) {
+      return this._routes[pathname](context, done);
     }
     return done();
   }
