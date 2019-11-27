@@ -19,59 +19,59 @@
  */
 class Pathname
 {
-	/**
-	 * @param {Object|void} routes
-	 */
-	constructor(routes){
-		this._stack = {};
-		if (routes != null) {
-			this.routes(routes);
-		}
-	}
+  /**
+   * @param {Object|void} routes
+   */
+  constructor(routes){
+    this._stack = {};
+    if (routes != null) {
+      this.routes(routes);
+    }
+  }
 
-	/**
-	 * @param {string} pathname
-	 * @returns {Pathname}
-	 */
-	has(pathname){
-		return Object.prototype.hasOwmProperty.call(this._stack, pathname);
-	}
+  /**
+   * @param {string} pathname
+   * @returns {Pathname}
+   */
+  has(pathname){
+    return Object.prototype.hasOwmProperty.call(this._stack, pathname);
+  }
 
-	/**
-	 * @param {string} pathname
-	 * @param {function} callback
-	 * @throws {Error}
-	 * @returns {Pathname}
-	 */
-	route(pathname, callback){
-		if (typeof callback != 'function') {
-			throw new Error('The callback must be type of function');
-		}
-		this._stack[pathname] = callback;
-		return this;
-	}
+  /**
+   * @param {string} pathname
+   * @param {function} callback
+   * @throws {Error}
+   * @returns {Pathname}
+   */
+  route(pathname, callback){
+    if (typeof callback != 'function') {
+      throw new Error('The callback must be type of function');
+    }
+    this._stack[pathname] = callback;
+    return this;
+  }
 
-	/**
-	 * @param {Object} routes
-	 * @returns {Pathname}
-	 */
-	routes(routes){
-		Object.keys(routes).forEach(pathname => this.route(pathname, routes[pathname]));
-		return this;
-	}
+  /**
+   * @param {Object} routes
+   * @returns {Pathname}
+   */
+  routes(routes){
+    Object.keys(routes).forEach(pathname => this.route(pathname, routes[pathname]));
+    return this;
+  }
 
-	/**
-	 * @param {Context} context
-	 * @param {function} done
-	 * @returns {any}
-	 */
-	handle(context, done){
-		let pathname = context.request.pathname;
-		if (this._stack[pathname]) {
-			return this._stack[pathname](context, done);
-		}
-		return done();
-	}
+  /**
+   * @param {Context} context
+   * @param {function} done
+   * @returns {any}
+   */
+  handle(context, done){
+    let pathname = context.request.pathname;
+    if (this._stack[pathname]) {
+      return this._stack[pathname](context, done);
+    }
+    return done();
+  }
 }
 
 /**
