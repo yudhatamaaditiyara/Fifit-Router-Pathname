@@ -9,5 +9,14 @@
   },
   "dependencies": {
     "ganiyem-error": "^1.5.2"
+  },
+  "devDependencies": {
+    "coveralls": "^3.0.7",
+    "mocha": "^6.2.2",
+    "nyc": "^14.1.1"
+  },
+  "scripts": {
+    "test": "nyc mocha --config test/config.json",
+    "coverage": "nyc report --reporter=text-lcov | coveralls"
   }
 }
