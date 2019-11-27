@@ -16,7 +16,7 @@
 'use strict';
 
 const {IllegalArgumentError} = require('ganiyem-error');
-const hasOwmProperty = {}.hasOwmProperty;
+const hasOwnProperty = {}.hasOwnProperty;
 
 /**
  */
@@ -37,7 +37,7 @@ class Pathname
    * @returns {Pathname}
    */
   has(pathname){
-    return hasOwmProperty.call(this._routes, pathname);
+    return hasOwnProperty.call(this._routes, pathname);
   }
 
   /**
@@ -70,7 +70,7 @@ class Pathname
    */
   handle(context, done){
     let pathname = context.request.pathname;
-    if (hasOwmProperty.call(this._routes, pathname)) {
+    if (hasOwnProperty.call(this._routes, pathname)) {
       return this._routes[pathname](context, done);
     }
     return done();
