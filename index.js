@@ -15,6 +15,8 @@
  */
 'use strict';
 
+const {IllegalArgumentError} = require('ganiyem-error');
+
 /**
  */
 class Pathname
@@ -40,12 +42,12 @@ class Pathname
   /**
    * @param {string} pathname
    * @param {function} callback
-   * @throws {Error}
+   * @throws {IllegalArgumentError}
    * @returns {Pathname}
    */
   route(pathname, callback){
     if (typeof callback != 'function') {
-      throw new Error('The callback must be type of function');
+      throw new IllegalArgumentError('The callback must be type of function');
     }
     this._routes[pathname] = callback;
     return this;
