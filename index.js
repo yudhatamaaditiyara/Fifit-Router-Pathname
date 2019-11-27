@@ -20,7 +20,7 @@
 class Pathname
 {
   /**
-   * @param {Object|void} routes
+   * @param {Object} [routes]
    */
   constructor(routes){
     this._stack = {};
